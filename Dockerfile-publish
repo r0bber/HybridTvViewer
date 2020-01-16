@@ -1,0 +1,15 @@
+FROM ubuntu:16.04
+
+ARG GIT_COMMIT=unknown
+LABEL git-commit=$GIT_COMMIT
+
+ADD bin /opt/project/bin
+ADD build /opt/project/build
+
+WORKDIR /opt/project
+
+RUN apt-get update
+RUN apt-get -y install curl jq
+RUN chmod +x /opt/project/bin/upload-and-publish.sh
+
+ENTRYPOINT ["/opt/project/bin/upload-and-publish.sh"]

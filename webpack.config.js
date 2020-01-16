@@ -1,10 +1,10 @@
 const CleanWebpackPlugin = require("clean-webpack-plugin").CleanWebpackPlugin;
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ZipPlugin = require('zip-webpack-plugin');
 const path = require("path");
 
 var fileExtensions = ["jpg", "jpeg", "png", "gif", "eot", "otf", "svg", "ttf", "woff", "woff2"];
-
 
 var options = {
   mode: process.env.NODE_ENV || "development",
@@ -88,6 +88,9 @@ var options = {
       filename: "options.html",
       chunks: ["options"]
     }),
+    new ZipPlugin({
+      filename: "HybridTVViewer.zip"
+    })
   ]
 };
 
